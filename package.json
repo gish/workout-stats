@@ -1,0 +1,31 @@
+{
+  "name": "workout-stats",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erik Hedberg <erik@hedberg.at>",
+  "license": "ISC",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "gulp": "^3.8.11",
+    "gulp-batch": "^1.0.5",
+    "gulp-mocha": "^2.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-watch": "^4.2.0",
+    "run-sequence": "^1.0.2"
+  },
+  "dependencies": {
+    "browserify": "^9.0.8",
+    "datejs": "^1.0.0-rc3",
+    "google-spreadsheet": "^0.2.8",
+    "gulp-clean": "^0.3.1",
+    "gulp-sequence": "^0.3.2",
+    "node-promise": "^0.5.12",
+    "react": "^0.13.2",
+    "reactify": "^1.1.0",
+    "reflux": "^0.2.7",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
