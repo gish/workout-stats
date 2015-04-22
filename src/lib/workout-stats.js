@@ -1,6 +1,6 @@
 var getLog = require('./getlog'),
     stats = require('./stats'),
-    Promise = require('node-promise').Promise,
+    Q = require('q'),
     getLongestStreak,
     getCurrentStreak,
     getNumSessions,
@@ -47,10 +47,10 @@ getNumDays = function(log) {
 };
 
 getStats = function(secret) {
-    var promise = new Promise();
+    var deferred = new Q.defer();
 
     getLog(secret).then(function(log) {
-        promise.resolve({
+        deferred.resolve({
             longestStreak: getLongestStreak(log),
             currentStreak: getCurrentStreak(log),
             numSessions: getNumSessions(log),
@@ -58,5 +58,7 @@ getStats = function(secret) {
         });
     });
 
-    return promise;
+    return deferred.promise;
 };
+
+module.exports = getStats;

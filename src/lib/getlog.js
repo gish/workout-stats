@@ -1,5 +1,5 @@
 var datejs = require('datejs'),
-    Promise = require('node-promise').Promise,
+    Q = require('q'),
     GoogleSpreadsheet = require('google-spreadsheet'),
     getSpreadsheetData,
     getLog,
@@ -8,15 +8,15 @@ var datejs = require('datejs'),
 
 getSpreadsheetData = function(key) {
     var sheet = new GoogleSpreadsheet(key),
-        promise = new Promise();
+        deferred = new Q.defer();
     sheet.getRows(1, function(err, data) {
-        promise.resolve(data);
+        deferred.resolve(data);
     });
-    return promise;
+    return deferred.promise;
 };
 
 getLog = function(key) {
-    var promise = new Promise(),
+    var deferred = new Q.defer(),
         transformedData;
 
     getSpreadsheetData(key).then(function(data) {
@@ -27,10 +27,10 @@ getLog = function(key) {
                 lon: row.lon
             };
         });
-        promise.resolve(transformedData);
+        deferred.resolve(transformedData);
     });
 
-    return promise;
+    return deferred.promise;
 };
 
 module.exports = getLog;

@@ -22,10 +22,10 @@
     "google-spreadsheet": "^0.2.8",
     "gulp-clean": "^0.3.1",
     "gulp-sequence": "^0.3.2",
-    "node-promise": "^0.5.12",
     "react": "^0.13.2",
     "reactify": "^1.1.0",
     "reflux": "^0.2.7",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "q": "^1.2.0"
   }
 }
