@@ -4,7 +4,8 @@ var React = require('react'),
     actions = require('../actions/actions.js'),
     CurrentStreakView = require('./current-streak.jsx'),
     LongestStreakView = require('./longest-streak.jsx'),
-    TotalView = require('./total.jsx'),
+    NumberDaysView = require('./num-days.jsx'),
+    NumberSessionsView = require('./num-sessions.jsx'),
     Main;
 
 Main = React.createClass({
@@ -35,7 +36,8 @@ Main = React.createClass({
             <div>
                 <CurrentStreakView streak={this.state.currentStreak} />
                 <LongestStreakView streak={this.state.longestStreak} />
-                <TotalView total={this.state.numDays} />
+                <NumberDaysView total={this.state.numDays} />
+                <NumberSessionsView total={this.state.numSessions} />
             </div>
         );
     }

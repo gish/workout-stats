@@ -4,7 +4,7 @@ var React = require('react'),
 Total = React.createClass({
     render: function() {
         return (
-            <div>Total: {this.props.total}</div>
+            <div>Number of sessions: {this.props.total}</div>
         );
     }
 });
