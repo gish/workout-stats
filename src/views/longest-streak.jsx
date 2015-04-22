@@ -4,7 +4,7 @@ var React = require('react'),
 Streak = React.createClass({
     render: function() {
         return (
-            <div>Streak: {this.props.streak}</div>
+            <div>Longest streak: {this.props.streak}</div>
         );
     }
 });

@@ -2,7 +2,8 @@ var React = require('react'),
     Reflux = require('reflux'),
     statsStore = require('../stores/stats-store.js'),
     actions = require('../actions/actions.js'),
-    StreakView = require('./streak.jsx'),
+    CurrentStreakView = require('./current-streak.jsx'),
+    LongestStreakView = require('./longest-streak.jsx'),
     TotalView = require('./total.jsx'),
     Main;
 
@@ -32,7 +33,8 @@ Main = React.createClass({
     render: function() {
         return (
             <div>
-                <StreakView streak={this.state.currentStreak} />
+                <CurrentStreakView streak={this.state.currentStreak} />
+                <LongestStreakView streak={this.state.longestStreak} />
                 <TotalView total={this.state.numDays} />
             </div>
         );
