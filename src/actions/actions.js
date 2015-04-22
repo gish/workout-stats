@@ -7,7 +7,7 @@ Actions = Reflux.createActions({
 });
 
 Actions.load.listen(function(secret) {
-    getStats(secret).then(this.completed);
+    workoutStats(secret).then(this.completed);
 });
 
 module.exports = Actions;

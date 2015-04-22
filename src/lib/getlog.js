@@ -1,17 +1,27 @@
 var datejs = require('datejs'),
     Q = require('q'),
-    GoogleSpreadsheet = require('google-spreadsheet'),
+    jsonp = require('jsonp'),
     getSpreadsheetData,
     getLog,
     workouts;
 
 
 getSpreadsheetData = function(key) {
-    var sheet = new GoogleSpreadsheet(key),
-        deferred = new Q.defer();
-    sheet.getRows(1, function(err, data) {
-        deferred.resolve(data);
+    var deferred = new Q.defer(),
+        url = 'https://spreadsheets.google.com/feeds/list/' + key + '/od6/public/values?alt=json-in-script';
+
+    jsonp(url, function(err, data) {
+        var entries = data.feed.entry,
+            rows = entries.map(function(entry) {
+            return {
+                date: entry.gsx$date.$t,
+                lat: entry.gsx$lat.$t,
+                lon: entry.gsx$lon.$t
+            };
+        });
+        deferred.resolve(rows);
     });
+
     return deferred.promise;
 };
 

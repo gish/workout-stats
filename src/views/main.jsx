@@ -6,21 +6,23 @@ var React = require('react'),
     TotalView = require('./total.jsx'),
     Main;
 
-
 Main = React.createClass({
     mixins: [
         Reflux.listenTo(statsStore, 'onUpdate')
     ],
 
-    init: function() {
-        actions.load();
-    },
-
     getInitialState: function() {
         return {
-            streak: 0,
-            total: 0
+            longestStreak: 0,
+            currentStreak: 0,
+            numDays: 0,
+            numSessions: 0
         };
+    },
+
+    componentDidMount: function() {
+        var documentId = window.location.hash.substr(1);
+        actions.load(documentId);
     },
 
     onUpdate: function(stats) {
@@ -30,8 +32,8 @@ Main = React.createClass({
     render: function() {
         return (
             <div>
-                <StreakView streak={this.state.streak} />
-                <TotalView total={this.state.total} />
+                <StreakView streak={this.state.currentStreak} />
+                <TotalView total={this.state.numDays} />
             </div>
         );
     }

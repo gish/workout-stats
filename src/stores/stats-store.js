@@ -1,14 +1,11 @@
 var Reflux = require('reflux'),
-    Actions = require('./../actions/actions.js');
-
-var stats = {
-    streak: 5,
-    total: 10
-};
+    Actions = require('./../actions/actions.js'),
+    stats;
 
 var statsStore = Reflux.createStore({
     listenables: Actions,
-    onLoadCompleted: function() {
+    onLoadCompleted: function(data) {
+        stats = data;
         this.trigger(stats);
     }
 });

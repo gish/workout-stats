@@ -11,10 +11,7 @@ var gulp = require('gulp'),
 gulp.task('default', function() {
     runSequence('clean', 'build', 'copy');
 
-    watch('src/**/*.js', function() {
-        gulp.start('test');
-    });
-    watch('src/**/*.jsx', function() {
+    watch('src/**/*', function() {
         gulp.start('build');
      });
 });
