@@ -77,5 +77,5 @@ module.exports = {
             }
             return previous;
         }, facilities[0]);
-    }
+    },
 };

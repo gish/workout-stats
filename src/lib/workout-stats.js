@@ -45,6 +45,20 @@ getNumDays = function(log) {
     return lastDay - firstDay;
 };
 
+getNumByDayOfWeek = function(log) {
+    var num = [0, 0, 0, 0, 0, 0, 0];
+
+    log.map(function(entry) {
+        var dayOfWeek = entry.date.getDay() - 1;
+        if (dayOfWeek === -1) {
+            dayOfWeek = num.length - 1;
+        }
+        num[dayOfWeek]++;
+    });
+
+    return num;
+};
+
 getStats = function(secret) {
     var deferred = new Q.defer();
 
@@ -53,7 +67,8 @@ getStats = function(secret) {
             longestStreak: getLongestStreak(log),
             currentStreak: getCurrentStreak(log),
             numSessions: getNumSessions(log),
-            numDays: getNumDays(log)
+            numDays: getNumDays(log),
+            numByDayOfWeek: getNumByDayOfWeek(log)
         });
     });
 

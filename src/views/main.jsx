@@ -3,6 +3,7 @@ var React = require('react'),
     statsStore = require('../stores/stats-store.js'),
     actions = require('../actions/actions.js'),
     NumericStatsView = require('./numeric-stats.jsx'),
+    WorkoutsPerDayView = require('./workouts-per-day.jsx'),
     Main;
 
 Main = React.createClass({
@@ -15,7 +16,8 @@ Main = React.createClass({
             longestStreak: 0,
             currentStreak: 0,
             numDays: 0,
-            numSessions: 0
+            numSessions: 0,
+            numByDayOfWeek: [0,0,0,0,0,0,0]
         };
     },
 
@@ -37,6 +39,7 @@ Main = React.createClass({
                     numDays={this.state.numDays}
                     numSessions={this.state.numSessions}
                 />
+                <WorkoutsPerDayView numByDay={this.state.numByDayOfWeek} />
             </div>
         );
     }
