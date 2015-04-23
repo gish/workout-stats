@@ -2,10 +2,7 @@ var React = require('react'),
     Reflux = require('reflux'),
     statsStore = require('../stores/stats-store.js'),
     actions = require('../actions/actions.js'),
-    CurrentStreakView = require('./current-streak.jsx'),
-    LongestStreakView = require('./longest-streak.jsx'),
-    NumberDaysView = require('./num-days.jsx'),
-    NumberSessionsView = require('./num-sessions.jsx'),
+    NumericStatsView = require('./numeric-stats.jsx'),
     Main;
 
 Main = React.createClass({
@@ -33,11 +30,13 @@ Main = React.createClass({
 
     render: function() {
         return (
-            <div>
-                <CurrentStreakView streak={this.state.currentStreak} />
-                <LongestStreakView streak={this.state.longestStreak} />
-                <NumberDaysView total={this.state.numDays} />
-                <NumberSessionsView total={this.state.numSessions} />
+            <div className="site-wrapper">
+                <NumericStatsView
+                    currentStreak={this.state.currentStreak}
+                    longestStreak={this.state.longestStreak}
+                    numDays={this.state.numDays}
+                    numSessions={this.state.numSessions}
+                />
             </div>
         );
     }

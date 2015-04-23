@@ -6,13 +6,18 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     clean = require('gulp-clean'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    sass = require('gulp-sass');
 
 gulp.task('default', function() {
     runSequence('clean', 'build', 'copy');
 
-    watch('src/**/*', function() {
-        gulp.start('build');
+    watch(['src/**/*.jsx', 'src/**/*.js'], function() {
+        gulp.start('build-js');
+     });
+
+    watch('src/**/*.scss', function() {
+        gulp.start('build-css');
      });
 });
 
@@ -28,14 +33,24 @@ gulp.task('test', function() {
 });
 
 gulp.task('build', function() {
+    runSequence('build-js', 'build-css');
+});
+
+gulp.task('build-js', function() {
     var b = browserify({
         transform: [reactify],
         debug: true,
         entries: ['./src/main.jsx']
     });
-    return b.bundle()
+    b.bundle()
         .pipe(source('main.jsx'))
         .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('build-css', function() {
+    gulp.src('./src/**/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', function() {
