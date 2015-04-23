@@ -4,7 +4,12 @@ var React = require('react'),
 Streak = React.createClass({
     render: function() {
         return (
-            <div>Current streak: {this.props.streak}</div>
+            <div className="stat">
+                <span className="stat__value">
+                    {this.props.streak}
+                </span>
+                <span className="stat__title">Current streak</span>
+            </div>
         );
     }
 });
