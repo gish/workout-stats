@@ -1,0 +1,28 @@
+body {
+  background: #fff;
+  color: #5e5e5e;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-family: Lato,Helvetica,Arial,sans-serif;
+  font-size: 62.5%; }
+
+.site-wrapper {
+  max-width: 480px;
+  margin: 0 auto; }
+
+.stats-table {
+  font-size: 1rem;
+  border-spacing: 0;
+  border-top: 1px solid #c0c0c0;
+  margin-bottom: 2rem;
+  width: 100%; }
+  .stats-table__title {
+    border-right: 1px solid #c0c0c0;
+    border-bottom: 1px solid #c0c0c0;
+    padding: 0.5rem 1.2rem;
+    width: 90%; }
+  .stats-table__value {
+    border-bottom: 1px solid #c0c0c0;
+    padding: 0.5rem 1.2rem; }
+
+.dropdown {
+  margin-bottom: 1em; }
