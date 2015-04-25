@@ -4,6 +4,7 @@ var React = require('react'),
     actions = require('../actions/actions.js'),
     NumericStatsView = require('./numeric-stats.jsx'),
     WorkoutsPerDayView = require('./workouts-per-day.jsx'),
+    WorkoutsPerFacilityView = require('./workouts-per-facility.jsx'),
     Main;
 
 Main = React.createClass({
@@ -31,6 +32,7 @@ Main = React.createClass({
             <div className="site-wrapper">
                 <NumericStatsView log={this.state.log} />
                 <WorkoutsPerDayView log={this.state.log} />
+                <WorkoutsPerFacilityView log={this.state.log} />
             </div>
         );
     }

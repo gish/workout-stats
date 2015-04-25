@@ -76,5 +76,6 @@ module.exports = {
     getCurrentStreak: getCurrentStreak,
     getNumSessions: getNumSessions,
     getNumDays: getNumDays,
-    getNumByDayOfWeek: getNumByDayOfWeek
+    getNumByDayOfWeek: getNumByDayOfWeek,
+    getFacility: stats.facility
 };
