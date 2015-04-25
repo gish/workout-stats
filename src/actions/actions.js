@@ -1,5 +1,5 @@
 var Reflux = require('reflux'),
-    workoutStats = require('../lib/workout-stats.js'),
+    getLog = require('../lib/getlog.js'),
     Actions;
 
 Actions = Reflux.createActions({
@@ -7,7 +7,7 @@ Actions = Reflux.createActions({
 });
 
 Actions.load.listen(function(secret) {
-    workoutStats(secret).then(this.completed);
+    getLog(secret).then(this.completed);
 });
 
 module.exports = Actions;

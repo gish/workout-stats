@@ -11,35 +11,26 @@ Main = React.createClass({
         Reflux.listenTo(statsStore, 'onUpdate')
     ],
 
-    getInitialState: function() {
-        return {
-            longestStreak: 0,
-            currentStreak: 0,
-            numDays: 0,
-            numSessions: 0,
-            numByDayOfWeek: [0,0,0,0,0,0,0]
-        };
-    },
-
     componentDidMount: function() {
         var documentId = window.location.hash.substr(1);
         actions.load(documentId);
     },
 
-    onUpdate: function(stats) {
-        this.setState(stats);
+    getInitialState: function() {
+        return {
+            log: []
+        };
+    },
+
+    onUpdate: function(log) {
+        this.setState({log: log});
     },
 
     render: function() {
         return (
             <div className="site-wrapper">
-                <NumericStatsView
-                    currentStreak={this.state.currentStreak}
-                    longestStreak={this.state.longestStreak}
-                    numDays={this.state.numDays}
-                    numSessions={this.state.numSessions}
-                />
-                <WorkoutsPerDayView numByDay={this.state.numByDayOfWeek} />
+                <NumericStatsView log={this.state.log} />
+                <WorkoutsPerDayView log={this.state.log} />
             </div>
         );
     }

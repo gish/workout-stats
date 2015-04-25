@@ -1,32 +1,44 @@
 var React = require('react'),
-    Reflux = require('reflux'),
+    workoutStats = require('./../lib/workout-stats.js'),
     Main;
 
 Main = React.createClass({
-    render: function() {
-        var sessionsPerDay = 0;
+    getStats: function(log) {
+        return {
+            currentStreak: workoutStats.getCurrentStreak(log),
+            longestStreak: workoutStats.getLongestStreak(log),
+            numDays: workoutStats.getNumDays(log),
+            numSessions: workoutStats.getNumSessions(log),
+        };
+    },
 
-        if (this.props.numDays) {
-            sessionsPerDay = Math.round(this.props.numSessions*10/this.props.numDays)/10;
+    render: function() {
+        var sessionsPerDay = 0,
+            stats;
+
+        stats = this.getStats(this.props.log);
+
+        if (stats.numDays) {
+            sessionsPerDay = Math.round(stats.numSessions*10/stats.numDays)/10;
         }
 
         return (
             <table className="stats-table">
                 <tr>
                     <td className="stats-table__title">Current streak</td>
-                    <td className="stats-table__value">{this.props.currentStreak}</td>
+                    <td className="stats-table__value">{stats.currentStreak}</td>
                 </tr>
                 <tr>
                     <td className="stats-table__title">Longest streak</td>
-                    <td className="stats-table__value">{this.props.longestStreak}</td>
+                    <td className="stats-table__value">{stats.longestStreak}</td>
                 </tr>
                 <tr>
                     <td className="stats-table__title">Number of days</td>
-                    <td className="stats-table__value">{this.props.numDays}</td>
+                    <td className="stats-table__value">{stats.numDays}</td>
                 </tr>
                 <tr>
                     <td className="stats-table__title">Number of sessions</td>
-                    <td className="stats-table__value">{this.props.numSessions}</td>
+                    <td className="stats-table__value">{stats.numSessions}</td>
                 </tr>
                 <tr>
                     <td className="stats-table__title">Sessions per day</td>

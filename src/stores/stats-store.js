@@ -1,12 +1,12 @@
 var Reflux = require('reflux'),
     Actions = require('./../actions/actions.js'),
-    stats;
+    statsStore;
 
-var statsStore = Reflux.createStore({
+statsStore = Reflux.createStore({
     listenables: Actions,
-    onLoadCompleted: function(data) {
-        stats = data;
-        this.trigger(stats);
+
+    onLoadCompleted: function(log) {
+        this.trigger(log);
     }
 });
 
