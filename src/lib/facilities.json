@@ -28,4 +28,9 @@
     name: "Siktargatan, Uppsala",
     lat: "59.850908",
     lon: "17.651001"
+}, {
+    id: 8,
+    name: "Fyrishov",
+    lat: "59.870523",
+    lon: "17.623312"
 }]
