@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     clean = require('gulp-clean'),
     runSequence = require('run-sequence'),
-    sass = require('gulp-sass');
+    sass = require('gulp-sass'),
+    ghPages = require('gulp-gh-pages');
 
 gulp.task('default', function() {
     runSequence('clean', 'build', 'copy');
@@ -56,4 +57,9 @@ gulp.task('build-css', function() {
 gulp.task('clean', function() {
     return gulp.src('dist/', {read: false})
         .pipe(clean());
+});
+
+gulp.task('deploy', function() {
+    return gulp.src('./dist/**/*')
+        .pipe(ghPages());
 });
