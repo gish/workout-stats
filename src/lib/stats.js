@@ -60,16 +60,16 @@ module.exports = {
     facility: function(coordinates, facilities) {
         return facilities.reduce(function(previous, facility) {
             var distance = calculateDistance(
-                    coordinates[0],
-                    coordinates[1],
-                    facility.coordinates[0],
-                    facility.coordinates[1]
+                    coordinates.lat,
+                    coordinates.lon,
+                    facility.lat,
+                    facility.lon
                 ),
                 previousDistance = calculateDistance(
-                    coordinates[0],
-                    coordinates[1],
-                    previous.coordinates[0],
-                    previous.coordinates[1]
+                    coordinates.lat,
+                    coordinates.lon,
+                    previous.lat,
+                    previous.lon
                 );
 
             if (distance < previousDistance) {

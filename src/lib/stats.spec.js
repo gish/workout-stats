@@ -42,7 +42,7 @@ describe('Stats', function() {
             expect(givenStreak).to.be(3);
         });
         it('should be 4 when set is [1,2,4,5,6,7,9,10,11]', function() {
-            givenStreak = stats.longestStreak([1,2,4,5,6,7,9,10,11]);
+            var givenStreak = stats.longestStreak([1,2,4,5,6,7,9,10,11]);
             expect(givenStreak).to.be(4);
         });
         it('should be 2 when set is [1,2]', function() {
@@ -50,7 +50,7 @@ describe('Stats', function() {
             expect(givenStreak).to.be(3);
         });
         it('should be 4 when set is [1,2,4,5,6,7,9,10,11]', function() {
-            givenStreak = stats.longestStreak([1,2,4,5,6,7,9,10,11]);
+            var givenStreak = stats.longestStreak([1,2,4,5,6,7,9,10,11]);
             expect(givenStreak).to.be(4);
         });
         it('should be 2 when set is [1,3,4]', function() {
@@ -58,7 +58,7 @@ describe('Stats', function() {
             expect(givenStreak).to.be(3);
         });
         it('should be 4 when set is [1,2,4,5,6,7,9,10,11]', function() {
-            givenStreak = stats.longestStreak([1,2,4,5,6,7,9,10,11]);
+            var givenStreak = stats.longestStreak([1,2,4,5,6,7,9,10,11]);
             expect(givenStreak).to.be(4);
         });
         it('should be 3 when set is [1,2,4,5,6]', function() {
@@ -66,7 +66,7 @@ describe('Stats', function() {
             expect(givenStreak).to.be(3);
         });
         it('should be 4 when set is [1,2,4,5,6,7,9,10,11]', function() {
-            givenStreak = stats.longestStreak([1,2,4,5,6,7,9,10,11]);
+            var givenStreak = stats.longestStreak([1,2,4,5,6,7,9,10,11]);
             expect(givenStreak).to.be(4);
         });
         it('should be 3 when set is [1,2,3,5,6]', function() {
@@ -90,23 +90,33 @@ describe('Stats', function() {
         it('should be "foo" when closest to foo', function() {
             var facilities = [{
                     name: 'foo',
-                    coordinates: [0, 0]
+                    lat: 0,
+                    lon: 0
                 }, {
                     name: 'bar',
-                    coordinates: [1, 1]
+                    lat: 1,
+                    lon: 0
                 }],
-                coordinates = [0, 0.5];
+                coordinates = {
+                    lat: 0,
+                    lon: 0
+                };
             expect(stats.facility(coordinates, facilities).name).to.be('foo');
         });
         it('should be "bar" when closest to bar', function() {
             var facilities = [{
                     name: 'foo',
-                    coordinates: [0, 0]
+                    lat: 0,
+                    lon: 0
                 }, {
                     name: 'bar',
-                    coordinates: [1, 1]
+                    lat: 1,
+                    lon: 1
                 }],
-                coordinates = [1, 1.5];
+                coordinates = {
+                    lat: 1,
+                    lon: 1.5
+                };
             expect(stats.facility(coordinates, facilities).name).to.be('bar');
         });
     });
