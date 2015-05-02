@@ -1,5 +1,4 @@
-var datejs = require('datejs'),
-    Q = require('q'),
+var Q = require('q'),
     jsonp = require('jsonp'),
     getSpreadsheetData,
     getLog,
@@ -32,7 +31,7 @@ getLog = function(key) {
     getSpreadsheetData(key).then(function(data) {
         transformedData = data.map(function(row) {
             return {
-                date: Date.parse(row.date),
+                date: row.date,
                 lat: row.lat,
                 lon: row.lon
             };
