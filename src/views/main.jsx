@@ -19,7 +19,7 @@ Main = React.createClass({
 
     getInitialState: function() {
         return {
-            log: statsStore.getCached()
+            log: statsStore.getCached() || []
         };
     },
 

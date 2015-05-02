@@ -8,7 +8,7 @@ statsStore = Reflux.createStore({
 
     getCached: function() {
         var cachedLog = window.localStorage.getItem('log'),
-            log = [];
+            log = null;
 
         if (cachedLog) {
             log = this.transformLogDate(JSON.parse(cachedLog));
