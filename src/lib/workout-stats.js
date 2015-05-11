@@ -18,8 +18,10 @@ getLongestStreak = function(log) {
 getCurrentStreak = function(log) {
     var days,
         today,
+        yesterday,
         streaks,
-        currentStreak;
+        todaysStreak = 0,
+        yesterdaysStreak = 0;
     if (log.length === 0) {
         return 0;
     }
@@ -27,15 +29,24 @@ getCurrentStreak = function(log) {
     days = log.map(function(entry) {
         return Math.floor(entry.date.getTime() / MS_PER_DAY);
     });
+
     today = Math.floor((new Date()).getTime() / MS_PER_DAY);
+    yesterday = Math.floor((new Date()).getTime() / MS_PER_DAY - 1);
     streaks = stats.streaks(days);
-    currentStreak = streaks.reduce(function(current, value) {
-        if (value[0] === today) {
-            return value[1];
+
+    streaks.map(function(streak) {
+        if (streak[0] === today) {
+            todaysStreak = streak[1];
+        } else if (streak[0] === yesterday) {
+            yesterdaysStreak = streak[1];
         }
-        return current;
-    }, 0);
-    return currentStreak;
+    });
+
+    if (todaysStreak > yesterdaysStreak) {
+        return todaysStreak;
+    }
+
+    return yesterdaysStreak;
 };
 
 getNumSessions = function(log) {
