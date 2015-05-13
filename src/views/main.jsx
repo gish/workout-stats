@@ -35,7 +35,36 @@ Main = React.createClass({
         });
     },
 
-    setInterval: function(numDaysBack) {
+    filterLog: function(opts) {
+        var filteredLog;
+
+        if (opts.type === 'daysBack') {
+            filteredLog = this.getDaysBack(opts.value);
+        }
+
+        if (opts.type === 'toDate') {
+            filteredLog = this.getToDate(opts.value);
+        }
+
+        this.setState({filteredLog: filteredLog});
+    },
+
+    getToDate: function(unit) {
+        var log = this.state.log,
+            pastDate = moment().startOf(unit),
+            filteredLog;
+
+        filteredLog = log.reduce(function(filteredDays, curr) {
+            if (curr.date.getTime()/1E3 >= pastDate.unix()) {
+                filteredDays.push(curr);
+            }
+            return filteredDays;
+        }, []);
+
+        return filteredLog;
+    },
+
+    getDaysBack: function(numDaysBack) {
         var log = this.state.log,
             pastDate = moment().subtract(numDaysBack, 'days'),
             filteredLog;
@@ -47,14 +76,13 @@ Main = React.createClass({
             return filteredDays;
         }, []);
 
-        console.log(filteredLog.length, log.length);
-        this.setState({filteredLog: filteredLog});
+        return filteredLog;
     },
 
     render: function() {
         return (
             <div className="site-wrapper">
-                <DayFilterView onFilter={this.setInterval} />
+                <DayFilterView onFilter={this.filterLog} />
                 <NumericStatsView log={this.state.filteredLog} />
                 <WorkoutsPerDayView log={this.state.filteredLog} />
                 <WorkoutsPerFacilityView log={this.state.filteredLog} />
