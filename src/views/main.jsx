@@ -9,6 +9,12 @@ var React = require('react'),
     DayFilterView = require('./day-filter.jsx'),
     Main;
 
+moment.locale('se', {
+    week: {
+        dow: 1
+    }
+});
+
 Main = React.createClass({
     mixins: [
         Reflux.listenTo(statsStore, 'onUpdate')
