@@ -65,7 +65,7 @@ getNumDays = function(log) {
 
     firstDay = getDay(log[0]);
     lastDay = getDay(log[log.length - 1]);
-    return lastDay - firstDay;
+    return lastDay - firstDay + 1;
 };
 
 getNumByDayOfWeek = function(log) {
