@@ -42,7 +42,7 @@ Main = React.createClass({
     },
 
     filterLog: function(opts) {
-        var filteredLog;
+        var filteredLog = this.state.filteredLog;
 
         if (opts.type === 'daysBack') {
             filteredLog = this.getDaysBack(opts.value);
@@ -55,9 +55,8 @@ Main = React.createClass({
         this.setState({filteredLog: filteredLog});
     },
 
-    getToDate: function(unit) {
+    getFilteredLog: function(pastDate) {
         var log = this.state.log,
-            pastDate = moment().startOf(unit),
             filteredLog;
 
         filteredLog = log.reduce(function(filteredDays, curr) {
@@ -70,19 +69,16 @@ Main = React.createClass({
         return filteredLog;
     },
 
+    getToDate: function(unit) {
+        var pastDate = moment().startOf(unit);
+
+        return this.getFilteredLog(pastDate);
+    },
+
     getDaysBack: function(numDaysBack) {
-        var log = this.state.log,
-            pastDate = moment().subtract(numDaysBack, 'days'),
-            filteredLog;
+        var pastDate = moment().subtract(numDaysBack, 'days');
 
-        filteredLog = log.reduce(function(filteredDays, curr) {
-            if (curr.date.getTime()/1E3 >= pastDate.unix()) {
-                filteredDays.push(curr);
-            }
-            return filteredDays;
-        }, []);
-
-        return filteredLog;
+        return this.getFilteredLog(pastDate);
     },
 
     render: function() {
