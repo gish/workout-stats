@@ -1,4 +1,6 @@
 # workout-stats
+[![devDependency Status](https://david-dm.org/gish/workout-stats/dev-status.svg)](https://david-dm.org/gish/workout-stats#info=devDependencies)
+
 Show stats for workouts added by my IFTTT Do recipe to a Google Spreadsheet.
 
 [Example here][1]
