@@ -33,4 +33,9 @@
     name: "Fyrishov",
     lat: "59.870523",
     lon: "17.623312"
+}, {
+    id: 9,
+    name: "Södra Stavsudda",
+    lat: "59.396787",
+    lon: "18.806583"
 }]
